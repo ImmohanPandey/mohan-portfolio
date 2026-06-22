@@ -57,17 +57,17 @@ export default function Hero() {
                 transition={{ duration: 1.2 }}
                 className="grid grid-cols-3 gap-4 mt-8"
               >
-                <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-950">
+                <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-950 hover:-translate-y-2 hover:border-zinc-600 hover:shadow-2xl transition-all duration-300 cursor-default">
                   <h3 className="text-2xl font-bold">4+</h3>
                   <p className="text-zinc-500 text-sm">Enterprise Projects</p>
                 </div>
 
-                <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-950">
+                <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-950 hover:-translate-y-2 hover:border-zinc-600 hover:shadow-2xl transition-all duration-300 cursor-default">
                   <h3 className="text-2xl font-bold">React</h3>
                   <p className="text-zinc-500 text-sm">Frontend</p>
                 </div>
 
-                <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-950">
+                <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-950 hover:-translate-y-2 hover:border-zinc-600 hover:shadow-2xl transition-all duration-300 cursor-default">
                   <h3 className="text-2xl font-bold">Flutter</h3>
                   <p className="text-zinc-500 text-sm">Mobile</p>
                 </div>
