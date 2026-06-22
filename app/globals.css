@@ -36,7 +36,6 @@ img {
 
 /* Mobile fixes */
 @media (max-width: 640px) {
-
   html,
   body {
     overflow-x: hidden;

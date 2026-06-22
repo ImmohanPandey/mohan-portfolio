@@ -2,10 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function SectionWrapper({
-  children,
-  id,
-}) {
+export default function SectionWrapper({ children, id }) {
   return (
     <motion.section
       id={id}

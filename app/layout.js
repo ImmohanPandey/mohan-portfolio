@@ -11,11 +11,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "Mohan | Full Stack Developer",
-  description: "Portfolio of Mohan",
-};
-
 import "./globals.css";
 
 export default function RootLayout({ children }) {
@@ -25,3 +20,19 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+export const metadata = {
+  title: "Mohan Pandey | Full Stack & Mobile Developer",
+
+  description:
+    "Full Stack Developer specializing in React, Flutter, FastAPI, PostgreSQL, MongoDB and cloud technologies.",
+
+  keywords: [
+    "React Developer",
+    "Flutter Developer",
+    "Full Stack Developer",
+    "FastAPI",
+    "PostgreSQL",
+    "MongoDB",
+  ],
+};
