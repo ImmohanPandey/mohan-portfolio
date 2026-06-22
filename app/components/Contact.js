@@ -29,7 +29,12 @@ export default function Contact() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 md:mt-16">
             {/* Email */}
-            <a href="mailto:Mohanpandey7557@gmail.com" className="group">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=Mohanpandey7557@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group"
+            >
               <div className="p-8 rounded-3xl border border-zinc-800 bg-zinc-950 hover:-translate-y-2 hover:border-zinc-600 hover:shadow-2xl transition-all duration-300">
                 <Mail className="mb-4" size={28} />
                 <h3 className="text-xl font-semibold">Email</h3>
