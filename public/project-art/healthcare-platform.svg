@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Futuristic healthcare platform visualization</title>
+  <desc id="desc">A medical hologram with heart pulse, secure data rings and clinical interface elements.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#04080f"/><stop offset=".58" stop-color="#06131b"/><stop offset="1" stop-color="#09091a"/></linearGradient>
+    <linearGradient id="med" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#50e7ff"/><stop offset="1" stop-color="#9a7cff"/></linearGradient>
+    <filter id="g2"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="s2"><feGaussianBlur stdDeviation="45"/></filter>
+    <pattern id="grid2" width="62" height="62" patternUnits="userSpaceOnUse"><path d="M62 0H0V62" fill="none" stroke="#ffffff" stroke-opacity=".04"/></pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg2)"/><rect width="1600" height="1000" fill="url(#grid2)"/>
+  <circle cx="815" cy="495" r="355" fill="#50e7ff" fill-opacity=".055" filter="url(#s2)"/>
+  <circle cx="815" cy="495" r="306" fill="none" stroke="#50e7ff" stroke-opacity=".18"/>
+  <circle cx="815" cy="495" r="258" fill="none" stroke="#9a7cff" stroke-opacity=".16" stroke-dasharray="8 14"/>
+  <circle cx="815" cy="495" r="205" fill="none" stroke="#50e7ff" stroke-opacity=".12"/>
+
+  <g transform="translate(680 250)" stroke="url(#med)" fill="none" filter="url(#g2)">
+    <circle cx="135" cy="95" r="72" stroke-width="5"/>
+    <path d="M38 420c14-116 53-205 97-205s83 89 97 205" stroke-width="6"/>
+    <path d="M68 248c-28 35-40 85-42 151M202 248c28 35 40 85 42 151" stroke-width="4" opacity=".65"/>
+  </g>
+
+  <g transform="translate(716 392)" filter="url(#g2)">
+    <path d="M98 45C78 7 18 12 13 61c-7 68 85 119 85 119s92-51 85-119c-5-49-65-54-85-16z" fill="#07141c" stroke="#50e7ff" stroke-width="4"/>
+    <path d="M24 98h39l15-33 26 74 20-46h49" fill="none" stroke="#b7ff3c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g transform="translate(160 205)">
+    <rect width="355" height="248" rx="28" fill="#071019" fill-opacity=".82" stroke="#50e7ff" stroke-opacity=".22"/>
+    <circle cx="62" cy="60" r="25" fill="#50e7ff" fill-opacity=".12" stroke="#50e7ff"/>
+    <path d="M62 46v28M48 60h28" stroke="#50e7ff" stroke-width="6" stroke-linecap="round"/>
+    <rect x="105" y="47" width="185" height="9" rx="5" fill="#ffffff" opacity=".12"/>
+    <rect x="105" y="72" width="118" height="7" rx="4" fill="#ffffff" opacity=".07"/>
+    <path d="M35 160h55l23-45 42 88 31-67 25 24h105" fill="none" stroke="#b7ff3c" stroke-width="4" filter="url(#g2)"/>
+  </g>
+
+  <g transform="translate(1120 235)">
+    <rect width="310" height="330" rx="28" fill="#071019" fill-opacity=".78" stroke="#9a7cff" stroke-opacity=".22"/>
+    <circle cx="155" cy="120" r="72" fill="none" stroke="#9a7cff" stroke-width="4" stroke-dasharray="50 16"/>
+    <circle cx="155" cy="120" r="42" fill="#9a7cff" fill-opacity=".12" stroke="#50e7ff"/>
+    <path d="M155 94v52M129 120h52" stroke="#50e7ff" stroke-width="9" stroke-linecap="round"/>
+    <rect x="52" y="235" width="206" height="10" rx="5" fill="#ffffff" opacity=".12"/>
+    <rect x="52" y="265" width="136" height="8" rx="4" fill="#ffffff" opacity=".07"/>
+  </g>
+
+  <g fill="#50e7ff" filter="url(#g2)"><circle cx="542" cy="760" r="7"/><circle cx="1008" cy="206" r="6"/><circle cx="1175" cy="730" r="8"/><circle cx="390" cy="535" r="5"/></g>
+  <g stroke="#50e7ff" stroke-opacity=".18"><path d="M542 760L690 625"/><path d="M1008 206L925 323"/><path d="M1175 730L956 618"/><path d="M390 535L604 505"/></g>
+</svg>

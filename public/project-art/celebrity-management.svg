@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Futuristic celebrity management system visualization</title>
+  <desc id="desc">A stylized stage, spotlight beams, profile hologram and connected management data cards.</desc>
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#08070d"/><stop offset=".55" stop-color="#110912"/><stop offset="1" stop-color="#080914"/></linearGradient>
+    <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff5ea8"/><stop offset="1" stop-color="#9a7cff"/></linearGradient>
+    <linearGradient id="spot" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff" stop-opacity=".32"/><stop offset="1" stop-color="#ff5ea8" stop-opacity="0"/></linearGradient>
+    <filter id="g4"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="s4"><feGaussianBlur stdDeviation="48"/></filter>
+    <pattern id="grid4" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#ffffff" stroke-opacity=".035"/></pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg4)"/><rect width="1600" height="1000" fill="url(#grid4)"/>
+  <circle cx="820" cy="410" r="350" fill="#ff5ea8" fill-opacity=".07" filter="url(#s4)"/>
+
+  <path d="M310 0L650 820H40z" fill="url(#spot)" opacity=".5"/>
+  <path d="M1290 0L950 820h610z" fill="url(#spot)" opacity=".4"/>
+  <ellipse cx="800" cy="825" rx="560" ry="92" fill="#ff5ea8" fill-opacity=".08" filter="url(#s4)"/>
+  <ellipse cx="800" cy="825" rx="420" ry="38" fill="none" stroke="#ff5ea8" stroke-opacity=".38"/>
+
+  <g transform="translate(565 145)">
+    <rect width="470" height="590" rx="42" fill="#090b12" fill-opacity=".76" stroke="url(#pink)" stroke-width="3" filter="url(#g4)"/>
+    <path d="M0 95h470M0 494h470" stroke="#ffffff" stroke-opacity=".07"/>
+    <circle cx="235" cy="210" r="92" fill="#ff5ea8" fill-opacity=".08" stroke="#ff5ea8" stroke-opacity=".45"/>
+    <circle cx="235" cy="185" r="45" fill="#16151f" stroke="#9a7cff" stroke-opacity=".4"/>
+    <path d="M145 390c18-82 59-130 90-130s72 48 90 130" fill="#15131b" stroke="#9a7cff" stroke-opacity=".4"/>
+    <circle cx="388" cy="86" r="13" fill="#b7ff3c" filter="url(#g4)"/>
+    <rect x="54" y="530" width="145" height="10" rx="5" fill="#ffffff" opacity=".12"/><rect x="54" y="552" width="92" height="7" rx="4" fill="#ffffff" opacity=".07"/>
+  </g>
+
+  <g transform="translate(120 285)">
+    <rect width="330" height="210" rx="26" fill="#0b0c13" fill-opacity=".82" stroke="#ff5ea8" stroke-opacity=".22"/>
+    <path d="M44 146l46-52 42 30 62-75 92 97" fill="none" stroke="#ff5ea8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#g4)"/>
+    <g fill="#ff5ea8"><circle cx="90" cy="94" r="7"/><circle cx="132" cy="124" r="7"/><circle cx="194" cy="49" r="7"/><circle cx="286" cy="146" r="7"/></g>
+  </g>
+
+  <g transform="translate(1170 290)">
+    <rect width="310" height="255" rx="26" fill="#0b0c13" fill-opacity=".82" stroke="#9a7cff" stroke-opacity=".22"/>
+    <circle cx="78" cy="76" r="34" fill="#9a7cff" fill-opacity=".12" stroke="#9a7cff"/>
+    <path d="M78 52l8 17 18 2-13 13 3 18-16-9-16 9 3-18-13-13 18-2z" fill="#ff5ea8"/>
+    <rect x="132" y="58" width="122" height="10" rx="5" fill="#ffffff" opacity=".12"/><rect x="132" y="83" width="82" height="7" rx="4" fill="#ffffff" opacity=".07"/>
+    <rect x="48" y="150" width="214" height="10" rx="5" fill="#ffffff" opacity=".09"/><rect x="48" y="182" width="166" height="8" rx="4" fill="#ffffff" opacity=".06"/>
+  </g>
+
+  <g fill="none" stroke="#9a7cff" stroke-opacity=".22"><path d="M450 390L565 390"/><path d="M1035 390L1170 390"/></g>
+  <g fill="#ff5ea8" filter="url(#g4)"><circle cx="480" cy="390" r="6"/><circle cx="1125" cy="390" r="6"/></g>
+  <g fill="#ffffff" opacity=".4"><circle cx="260" cy="720" r="3"/><circle cx="370" cy="770" r="4"/><circle cx="1290" cy="735" r="3"/><circle cx="1370" cy="680" r="5"/></g>
+</svg>

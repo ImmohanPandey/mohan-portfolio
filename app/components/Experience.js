@@ -1,135 +1,132 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowUpRight, Building2, Code2, GitBranch, Orbit, Rocket, Sparkles } from "lucide-react";
+import { journey, skills } from "../data";
+import SectionHeader from "./SectionHeader";
 import SectionWrapper from "./SectionWrapper";
 
-const achievements = [
-  {
-    number: "4+",
-    label: "Enterprise Projects",
-  },
-  {
-    number: "React + Flutter",
-    label: "Frontend & Mobile",
-  },
-  {
-    number: "FastAPI",
-    label: "Backend Development",
-  },
-  {
-    number: "AWS",
-    label: "Cloud & DevOps",
-  },
-];
-
-const technologies = [
-  "React.js",
-  "Flutter",
-  "Node.js",
-  "Python",
-  "FastAPI",
-  "PostgreSQL",
-  "MongoDB",
-  "AWS",
-  "Docker",
-  "CI/CD",
-];
+const cardVariants = {
+  hidden: { opacity: 0, y: 38, scale: 0.98 },
+  visible: (index) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.7, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
 
 export default function Experience() {
   return (
-    <SectionWrapper id="experience">
-      <div className="py-32 px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: false }}
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              {" "}
-              Professional Experience
-            </h2>
+    <SectionWrapper id="experience" className="experience-section journey-section">
+      <div className="journey-ambient journey-ambient-a" aria-hidden="true" />
+      <div className="journey-ambient journey-ambient-b" aria-hidden="true" />
 
-            <p className="text-zinc-500 text-base md:text-lg max-w-3xl">
-              {" "}
-              Experience working on production-grade applications across
-              healthcare, celebrity management, food-tech and enterprise
-              software solutions.
-            </p>
-          </motion.div>
+      <div className="page-width section-pad journey-inner">
+        <SectionHeader
+          index="03"
+          label="PROFESSIONAL_JOURNEY.LOG"
+          title={<>From first commit to<br /><span>the current chapter.</span></>}
+          copy="My journey so far is simple: start by learning how real software gets built, then keep raising the bar. Two chapters, one direction — keep building better systems and keep shipping." 
+        />
 
-          {/* Main Experience Card */}
+        <div className="journey-console-bar">
+          <span><i className="journey-live-dot" /> CAREER_TIMELINE</span>
+          <code>origin → growth → current_build</code>
+          <span className="journey-console-status">● LIVE</span>
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: false }}
-            className="mt-16 border border-zinc-800 rounded-3xl p-6 md:p-10 bg-zinc-950 hover:-translate-y-2 hover:border-zinc-600 hover:shadow-2xl transition-all duration-300"
-          >
-            <p className="text-xs tracking-[0.2em] uppercase text-zinc-500">
-              {" "}
-              CURRENT ROLE
-            </p>
+        <div className="journey-map">
+          <div className="journey-spine" aria-hidden="true">
+            <motion.i
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 1.25, ease: [0.22, 1, 0.36, 1] }}
+            />
+          </div>
 
-            <h3 className="text-3xl md:text-4xl font-bold mt-3 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-              {" "}
-              Software Developer
-            </h3>
+          {journey.map((item, index) => (
+            <motion.article
+              key={item.company}
+              className={`journey-card journey-card-${item.accent} ${item.project ? "journey-card-current" : ""}`}
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+              whileHover={{ y: -8, scale: 1.01, transition: { duration: 0.24 } }}
+            >
+              <div className="journey-node" aria-hidden="true"><span>{item.index}</span></div>
 
-            <p className="text-zinc-400 leading-8 mt-6 max-w-4xl">
-              Contributing to web, mobile and cloud-based applications using
-              modern technologies including React.js, Flutter, Node.js, FastAPI,
-              PostgreSQL, MongoDB and AWS services. Worked across frontend
-              development, backend APIs, database design, authentication
-              systems, cloud infrastructure and deployment pipelines.
-            </p>
+              <div className="journey-card-top">
+                <div className="journey-phase"><span>{item.index}</span>{item.phase}</div>
+                <div className={`journey-status ${item.project ? "is-current" : ""}`}>{item.status}</div>
+              </div>
 
-            {/* Tech Stack */}
+              <div className="journey-company-row">
+                <div className="journey-company-icon"><Building2 size={21} /></div>
+                <div>
+                  <span>COMPANY</span>
+                  <h3>{item.company}</h3>
+                  {item.designation && <strong className="journey-designation">{item.designation}</strong>}
+                </div>
+              </div>
 
-            <div className="flex flex-wrap gap-3 mt-8">
-              {technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900 text-sm transition-all duration-300 hover:-translate-y-1 hover:border-zinc-600"
+              <h4>{item.headline}</h4>
+              <p>{item.description}</p>
+
+              <div className="journey-runtime-row">
+                <span><Code2 size={14} /> {item.designation ? item.designation.toUpperCase() : "SOFTWARE DEVELOPMENT"}</span>
+                <span><GitBranch size={14} /> REAL-WORLD DELIVERY</span>
+              </div>
+
+              {item.project && (
+                <motion.div
+                  className="current-project"
+                  whileHover={{ x: 5, scale: 1.008 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 24 }}
                 >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+                  <div className="current-project-head">
+                    <span><Orbit size={16} /> {item.project.label}</span>
+                    <span className="current-project-active">ACTIVE_BUILD</span>
+                  </div>
+                  <div className="current-project-body">
+                    <div>
+                      <span className="current-project-command">mohan@kapoor:~$ open project</span>
+                      <strong>{item.project.name}<i>_</i></strong>
+                      <p>{item.project.description}</p>
+                    </div>
+                    <div className="current-project-orbit" aria-hidden="true"><span /><span /><span /></div>
+                  </div>
+                  <div className="current-project-footer"><span>PROJECT_STATUS</span><strong>IN DEVELOPMENT</strong><ArrowUpRight size={16} /></div>
+                </motion.div>
+              )}
+            </motion.article>
+          ))}
+        </div>
 
-          {/* Achievement Cards */}
+        <motion.div className="journey-now-banner" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div className="journey-now-icon"><Sparkles size={19} /></div>
+          <div><span>NOW_PLAYING.CAREER</span><strong>Kapoor Wealth Enterprises × Senior Software Developer × Vautra</strong></div>
+          <div className="journey-now-track"><i /></div>
+          <Rocket size={19} />
+        </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
-            {achievements.map((item, index) => (
-              <motion.div
-                key={item.label}
-                initial={{
-                  opacity: 0,
-                  y: 30,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                }}
-                viewport={{
-                  once: false,
-                }}
-                className="p-8 rounded-3xl border border-zinc-800 bg-zinc-950 hover:-translate-y-2 hover:border-zinc-600 hover:shadow-2xl transition-all duration-300"
+        <div className="stack-cloud journey-stack-cloud">
+          <div className="stack-cloud-head"><span>STACK_INDEX.JSON</span><span>{skills.length} ACTIVE TOOLS</span></div>
+          <div className="stack-cloud-grid">
+            {skills.map((skill, index) => (
+              <motion.span
+                key={skill}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4, scale: 1.04, transition: { duration: 0.2 } }}
+                transition={{ delay: index * 0.025 }}
               >
-                <h3 className="text-3xl font-bold">{item.number}</h3>
-
-                <p className="text-zinc-500 mt-2">{item.label}</p>
-              </motion.div>
+                <i>{String(index + 1).padStart(2, "0")}</i>{skill}
+              </motion.span>
             ))}
           </div>
         </div>

@@ -1,88 +1,60 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Braces, Cloud, Code2, Database, Smartphone } from "lucide-react";
+import SectionHeader from "./SectionHeader";
 import SectionWrapper from "./SectionWrapper";
 
-export default function About() {
-  const stats = [
-    {
-      number: "10+",
-      title: "Projects Built",
-    },
-    {
-      number: "React",
-      title: "Frontend",
-    },
-    {
-      number: "Flutter",
-      title: "Mobile",
-    },
-    {
-      number: "FastAPI",
-      title: "Backend",
-    },
-  ];
+const lanes = [
+  { icon: Code2, label: "Frontend", value: "React / Next", detail: "Interfaces with motion, structure and intent." },
+  { icon: Smartphone, label: "Mobile", value: "Flutter", detail: "Cross-platform experiences that feel native." },
+  { icon: Braces, label: "Backend", value: "FastAPI / Node", detail: "APIs and business logic built for real workflows." },
+  { icon: Database, label: "Data", value: "Postgres / Mongo", detail: "Practical models, queries and persistence." },
+  { icon: Cloud, label: "Cloud", value: "AWS / Docker", detail: "Deployment paths that actually reach production." },
+];
 
+export default function About() {
   return (
-    <SectionWrapper id="about">
-      <div className="py-32 px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-5xl font-bold mb-12">About Me</h2>
+    <SectionWrapper id="about" className="about-section">
+      <div className="page-width section-pad">
+        <SectionHeader
+          index="01"
+          label="PROFILE.EXE"
+          title={<>Not a “frontend guy”.<br /><span>I build across the stack.</span></>}
+          copy="The part I enjoy most is connecting the layers: understanding the product problem, shaping the interface, designing the data flow, building the API and making sure the whole thing can ship."
+        />
+
+        <div className="about-layout">
+          <motion.div className="manifesto-card" initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -7, scale: 1.006, transition: { duration: 0.24 } }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+            <div className="manifesto-top"><span>BUILD_PHILOSOPHY.md</span><span>UTF-8</span></div>
+            <div className="manifesto-copy">
+              <span className="line-number">01</span><p>I like products that feel <em>obvious</em> after they&apos;re built.</p>
+              <span className="line-number">02</span><p>That takes more than pretty UI — it takes systems thinking, fast iteration and enough engineering depth to cross boundaries.</p>
+              <span className="line-number">03</span><p>My default mode: <strong>understand → prototype → build → break → refine → ship.</strong></p>
+            </div>
+            <div className="manifesto-footer"><span>mohan@portfolio</span><span className="blink-dot" /></div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-              }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-zinc-400 text-lg leading-9">
-                I am a Full Stack and Mobile Developer passionate about building
-                modern, scalable and user-focused applications. My experience
-                spans frontend development with React, mobile application
-                development using Flutter, backend APIs with FastAPI and
-                database management using PostgreSQL and MongoDB. I enjoy
-                turning ideas into production-ready solutions that deliver real
-                value.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{
-                    opacity: 0,
-                    y: 30,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.1,
-                  }}
-                  viewport={{ once: true }}
-                  className="p-8 rounded-3xl border border-zinc-800 bg-zinc-950 hover:-translate-y-2 hover:border-zinc-600 hover:bg-zinc-900/50 transition-all duration-300"
-                >
-                  <h3 className="text-3xl font-bold">{item.number}</h3>
-
-                  <p className="text-zinc-500 mt-2">{item.title}</p>
+          <div className="lane-stack">
+            {lanes.map((lane, index) => {
+              const Icon = lane.icon;
+              return (
+                <motion.div key={lane.label} className="lane-card" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} whileHover={{ x: 7, y: -3, scale: 1.008, transition: { duration: 0.22 } }} viewport={{ once: true }} transition={{ delay: index * 0.08, duration: 0.55 }}>
+                  <div className="lane-icon"><Icon size={18} /></div>
+                  <div><span>{lane.label}</span><strong>{lane.value}</strong></div>
+                  <p>{lane.detail}</p>
+                  <span className="lane-index">0{index + 1}</span>
                 </motion.div>
-              ))}
-            </div>
+              );
+            })}
           </div>
+        </div>
+
+        <div className="signal-grid">
+          <div><span>MODE</span><strong>Builder</strong><small>idea → production</small></div>
+          <div><span>FOCUS</span><strong>Product Engineering</strong><small>web / mobile / backend</small></div>
+          <div><span>BIAS</span><strong>Ship & Iterate</strong><small>speed without chaos</small></div>
+          <div><span>STATUS</span><strong className="status-green">Online</strong><small>open to opportunities</small></div>
         </div>
       </div>
     </SectionWrapper>

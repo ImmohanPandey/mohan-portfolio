@@ -1,185 +1,124 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { Command, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { navItems } from "../data";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
-
-  const closeMenu = () => {
-    setMobileOpen(false);
-  };
-  const navLinkClass = (section) =>
-    activeSection === section
-      ? "text-white font-medium relative"
-      : "text-zinc-400 hover:text-white transition";
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const [active, setActive] = useState("hero");
 
   useEffect(() => {
-    const sections = ["hero", "about", "projects", "experience", "contact"];
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-      let currentSection = "hero";
-
-      sections.forEach((sectionId) => {
-        const section = document.getElementById(sectionId);
-
-        if (!section) return;
-
-        if (scrollPosition >= section.offsetTop) {
-          currentSection = sectionId;
-        }
-      });
-
-      setActiveSection(currentSection);
+    const onKey = (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setPaletteOpen((value) => !value);
+      }
+      if (event.key === "Escape") {
+        setPaletteOpen(false);
+        setMenuOpen(false);
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px" },
+    );
 
-    handleScroll();
+    ["hero", "about", "projects", "experience", "contact"].forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      observer.disconnect();
+    };
   }, []);
 
+  const goTo = (href) => {
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
+    setPaletteOpen(false);
+  };
+
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 border-b border-zinc-800 bg-black/70 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {" "}
-        {/* Logo */}
-        <div className="flex items-center gap-4">
-          <button
-            className="md:hidden"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+    <>
+      <header className="topbar">
+        <a href="#hero" className="brand" aria-label="Mohan Pandey home">
+          <span className="brand-mark">MP</span>
+          <span className="brand-copy">
+            <strong>MOHAN.DEV</strong>
+            <small>FULL STACK // MOBILE</small>
+          </span>
+        </a>
+
+        <nav className="desktop-nav" aria-label="Primary navigation">
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href} className={active === item.href.slice(1) ? "active" : ""}>
+              <span>{item.key}</span>{item.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="topbar-actions">
+          <ThemeToggle />
+          <button className="command-button" onClick={() => setPaletteOpen(true)}>
+            <Command size={14} /> <span>Navigate</span><kbd>⌘ K</kbd>
           </button>
-
-          <h1 className="text-lg sm:text-xl font-bold tracking-wide">
-            Mohan Pandey
-          </h1>
+          <button className="mobile-menu-button" onClick={() => setMenuOpen(true)} aria-label="Open navigation">
+            <Menu size={21} />
+          </button>
         </div>
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 text-sm text-zinc-400">
-          <li className="relative">
-            <a href="#about" className={navLinkClass("about")}>
-              About
-            </a>
+      </header>
 
-            {activeSection === "about" && (
-              <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-white rounded-full" />
-            )}
-          </li>
-
-          <li className="relative">
-            <a href="#projects" className={navLinkClass("projects")}>
-              Projects
-            </a>
-            {activeSection === "projects" && (
-              <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-white rounded-full" />
-            )}
-          </li>
-
-          <li className="relative">
-            <a href="#experience" className={navLinkClass("experience")}>
-              Experience
-            </a>
-            {activeSection === "experience" && (
-              <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-white rounded-full" />
-            )}
-          </li>
-
-          <li className="relative">
-            <a href="#contact" className={navLinkClass("contact")}>
-              Contact
-            </a>
-            {activeSection === "contact" && (
-              <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-white rounded-full" />
-            )}
-          </li>
-        </ul>
-      </div>
-
-      {/* Mobile Menu */}
       <AnimatePresence>
-        {mobileOpen && (
-          <>
-            {/* Overlay */}
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={closeMenu}
-              className=" fixed inset-0 bg-black/90 backdrop-blur-xl z-40 "
-            />
-
-            {/* Sidebar */}
-
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{
-                type: "spring",
-                stiffness: 250,
-                damping: 25,
-              }}
-              className=" fixed top-0 left-0 h-screen w-[280px] bg-black/70 backdrop-blur-xl border-r border-zinc-800 z-50 p-8 "
-            >
-              <div className="flex justify-between items-center mb-12">
-                <h2 className="font-bold text-xl">Mohan</h2>
-
-                <button onClick={closeMenu}>
-                  <X size={24} />
-                </button>
+        {menuOpen && (
+          <motion.div className="mobile-nav" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <motion.div className="mobile-nav-panel" initial={{ y: "-8%", opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: "-8%", opacity: 0 }}>
+              <div className="mobile-nav-head">
+                <span>MOHAN.DEV / MENU</span>
+                <button onClick={() => setMenuOpen(false)} aria-label="Close navigation"><X size={22} /></button>
               </div>
-
-              <div className="flex flex-col gap-8 text-lg">
-                <a
-                  href="#about"
-                  onClick={closeMenu}
-                  className="hover:text-white transition"
-                >
-                  About
-                </a>
-
-                <a
-                  href="#projects"
-                  onClick={closeMenu}
-                  className="hover:text-white transition"
-                >
-                  Projects
-                </a>
-
-                <a
-                  href="#experience"
-                  onClick={closeMenu}
-                  className="hover:text-white transition"
-                >
-                  Experience
-                </a>
-
-                <a
-                  href="#contact"
-                  onClick={closeMenu}
-                  className="hover:text-white transition"
-                >
-                  Contact
-                </a>
+              <div className="mobile-nav-links">
+                {navItems.map((item) => (
+                  <button key={item.href} onClick={() => goTo(item.href)}>
+                    <span>{item.key}</span>{item.label}
+                  </button>
+                ))}
               </div>
-
-              <div className="absolute bottom-10 left-8">
-                <p className="text-zinc-500 text-sm">
-                  Full Stack & Mobile Developer
-                </p>
-              </div>
+              <p>Build fast. Think in systems. Ship things that matter.</p>
             </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+
+      <AnimatePresence>
+        {paletteOpen && (
+          <motion.div className="palette-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={() => setPaletteOpen(false)}>
+            <motion.div className="command-palette" initial={{ y: -20, opacity: 0, scale: 0.97 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: -12, opacity: 0, scale: 0.98 }} onMouseDown={(event) => event.stopPropagation()}>
+              <div className="palette-input"><Command size={17} /><span>Jump anywhere in this build...</span><kbd>ESC</kbd></div>
+              <div className="palette-list">
+                {navItems.map((item) => (
+                  <button key={item.href} onClick={() => goTo(item.href)}>
+                    <span className="palette-number">{item.key}</span>
+                    <strong>Go to {item.label}</strong>
+                    <span>↵</span>
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
