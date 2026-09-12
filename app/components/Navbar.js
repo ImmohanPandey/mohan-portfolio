@@ -32,7 +32,7 @@ export default function Navbar() {
       { rootMargin: "-30% 0px -60% 0px" },
     );
 
-    ["hero", "about", "projects", "experience", "contact"].forEach((id) => {
+    ["hero", "about", "technology", "projects", "experience", "contact"].forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
     });

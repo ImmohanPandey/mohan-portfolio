@@ -1,8 +1,9 @@
 export const navItems = [
   { label: "About", href: "#about", key: "01" },
-  { label: "Work", href: "#projects", key: "02" },
-  { label: "Journey", href: "#experience", key: "03" },
-  { label: "Contact", href: "#contact", key: "04" },
+  { label: "Stack", href: "#technology", key: "02" },
+  { label: "Work", href: "#projects", key: "03" },
+  { label: "Journey", href: "#experience", key: "04" },
+  { label: "Contact", href: "#contact", key: "05" },
 ];
 
 export const skills = [

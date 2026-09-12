@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Building2, Code2, GitBranch, Orbit, Rocket, Sparkles } from "lucide-react";
-import { journey, skills } from "../data";
+import { journey } from "../data";
 import SectionHeader from "./SectionHeader";
 import SectionWrapper from "./SectionWrapper";
 
@@ -24,7 +24,7 @@ export default function Experience() {
 
       <div className="page-width section-pad journey-inner">
         <SectionHeader
-          index="03"
+          index="04"
           label="PROFESSIONAL_JOURNEY.LOG"
           title={<>From first commit to<br /><span>the current chapter.</span></>}
           copy="My journey so far is simple: start by learning how real software gets built, then keep raising the bar. Two chapters, one direction — keep building better systems and keep shipping." 
@@ -113,23 +113,6 @@ export default function Experience() {
           <Rocket size={19} />
         </motion.div>
 
-        <div className="stack-cloud journey-stack-cloud">
-          <div className="stack-cloud-head"><span>STACK_INDEX.JSON</span><span>{skills.length} ACTIVE TOOLS</span></div>
-          <div className="stack-cloud-grid">
-            {skills.map((skill, index) => (
-              <motion.span
-                key={skill}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -4, scale: 1.04, transition: { duration: 0.2 } }}
-                transition={{ delay: index * 0.025 }}
-              >
-                <i>{String(index + 1).padStart(2, "0")}</i>{skill}
-              </motion.span>
-            ))}
-          </div>
-        </div>
       </div>
     </SectionWrapper>
   );

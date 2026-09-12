@@ -68,7 +68,7 @@ export default function Projects() {
     <SectionWrapper id="projects" className="projects-section">
       <div className="page-width section-pad">
         <SectionHeader
-          index="02"
+          index="03"
           label="BUILD_LOG"
           title={<>Selected systems.<br /><span>Now with a visual pulse.</span></>}
           copy="A few production-style projects across operations, healthcare, mobile and administration. Each visual is designed around the problem space itself, while the engineering layer stays visible underneath."
